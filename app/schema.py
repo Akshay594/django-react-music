@@ -1,7 +1,9 @@
 import graphene
+import graphql_jwt
+
+from graphene_django import DjangoObjectType
 import tracks.schema
 import users.schema
-import graphql_jwt
 
 
 class Query(users.schema.Query, tracks.schema.Query, graphene.ObjectType):

@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v=^^-_e0c*o_o)zoq2w^+m#t3welf(8d6x#7va0e#yao_ajpb9'
+SECRET_KEY = 'django-insecure-&pw-cqbrz%f-_%uqeu+%3t=+vc-gb-x_5qea)+^xm!yg(!7eg0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,18 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'graphene_django',
-    'tracks'
+    "graphene_django",
+    'tracks',
+    'corsheaders',
+
+
 ]
 
-GRAPHENE = {
-    'SCHEMA': 'app.schema.schema',
-    'MIDDLEWARE': [
-        'graphql_jwt.middleware.JSONWebTokenMiddleware',
-    ],
-}
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,11 +59,21 @@ MIDDLEWARE = [
 
 ]
 
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000'
+]
+
 AUTHENTICATION_BACKENDS = [
     'graphql_jwt.backends.JSONWebTokenBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
+GRAPHENE = {
+    "SCHEMA": "app.schema.schema",
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
+}
 ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = [

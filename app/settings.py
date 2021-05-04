@@ -57,6 +57,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 
+
+    'tracks.middleware.StackOverFlowMiddleware',
+
 ]
 
 CORS_ORIGIN_WHITELIST = [
